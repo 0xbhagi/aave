@@ -1,0 +1,124 @@
+type AssetSourceUpdated @entity {
+  id: ID! 
+  asset: Bytes! 
+  source: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type BaseCurrencySet @entity {
+  id: ID! 
+  baseCurrency: Bytes!
+  baseCurrencyUnit: BigInt!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type FallbackOracleUpdated @entity {
+  id: ID! 
+  fallbackOracle: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+type AddressesProviderRegistered @entity {
+  id: ID! 
+  addressesProvider: Bytes! 
+  idValue: BigInt! 
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type AddressesProviderUnregistered @entity {
+  id: ID! 
+  addressesProvider: Bytes!
+  idValue: BigInt!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+type OwnershipTransferred @entity {
+  id: ID! 
+  previousOwner: Bytes! 
+  newOwner: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+type Accrued @entity {
+  id: ID! 
+  asset: Bytes!
+  reward: Bytes!
+  user: Bytes!
+  assetIndex: BigInt!
+  userIndex: BigInt!
+  rewardsAccrued: BigInt!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type AssetConfigUpdated @entity {
+  id: ID! 
+  asset: Bytes!
+  reward: Bytes!
+  oldEmission: BigInt!
+  newEmission: BigInt!
+  oldDistributionEnd: BigInt!
+  newDistributionEnd: BigInt!
+  assetIndex: BigInt!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type ClaimerSet @entity {
+  id: ID! 
+  user: Bytes!
+  claimer: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type EmissionManagerUpdated @entity {
+  id: ID! 
+  oldEmissionManager: Bytes!
+  newEmissionManager: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type RewardOracleUpdated @entity {
+  id: ID! 
+  reward: Bytes!
+  rewardOracle: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type RewardsClaimed @entity {
+  id: ID! 
+  user: Bytes!
+  reward: Bytes!
+  to: Bytes!
+  claimer: Bytes!
+  amount: BigInt!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
+
+type TransferStrategyInstalled @entity {
+  id: ID! 
+  reward: Bytes!
+  transferStrategy: Bytes!
+  evtBlockTime: BigInt!
+  evtBlockNum: BigInt!
+  contractAddress: Bytes!
+}
