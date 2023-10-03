@@ -1,307 +1,305 @@
 name: AaveV3
 description: Protocol v3 subgraph
-schema: null
 networks:
-- id: 1
-  start_block: 0
-  contracts:
-  - name: AaveOracle
-    # abi_file_path: ./abis/AaveOracle.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x54586bE62E3c3580375aE3723C145253060Ca0C2
-    events:
-    - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      requiredEntities: 
-       - name: "AssetSourceUpdated" 
-    - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-      requiredEntities:
-       - name: "FallbackOracleUpdated"
-    - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-      requiredEntities: 
-       - name: "BaseCurrencySet" 
-  - name: PoolAddressesProviderRegistry
-    # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0xbaA999AC55EAce41CcAE355c77809e68Bb345170
-    events:
-    - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderRegistered"
-    - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderUnregistered"
-    - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      requiredEntities: 
-       - name: "OwnershipTransferred"
-  - name: RewardsController
-    # abi_file_path: ./abis/RewardsController.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
-    events:
-    - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-      requiredEntities: 
-       - name: "AssetConfigUpdated"
-    - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-      requiredEntities: 
-       - name: "Accrued"
-    - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-      requiredEntities: 
-       - name: "RewardsClaimed"
-    - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-      requiredEntities: 
-       - name: "RewardOracleUpdated"
-    - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-      requiredEntities: 
-       - name: "EmissionManagerUpdated"
-    - event: "ClaimerSet(address indexed user, address indexed claimer)"
-      requiredEntities: 
-       - name: "ClaimerSet"
-    - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-      requiredEntities: 
-       - name: "TransferStrategyInstalled"
-- id: 137
-  start_block: 0
-  contracts:
-  - name: PolygonAaveOracle
-    # abi_file_path: ./abis/AaveOracle.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0xb023e699F5a33916Ea823A16485e259257cA8Bd1
-    events:
-    - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      requiredEntities: 
-       - name: "AssetSourceUpdated"
-    - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-      requiredEntities:
-       - name: "FallbackOracleUpdated"
-    - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-      requiredEntities: 
-       - name: "BaseCurrencySet" 
-  - name: PolygonPoolAddressesProviderRegistry
-    # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
-    events:
-    - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderRegistered"
-    - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderUnregistered"
-    - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      requiredEntities: 
-       - name: "OwnershipTransferred"
-  - name: PolygonRewardsController
-    # abi_file_path: ./abis/RewardsController.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x929EC64c34a17401F460460D4B9390518E5B473e
-    events:
-    - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-      requiredEntities: 
-       - name: "AssetConfigUpdated"
-    - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-      requiredEntities: 
-       - name: "Accrued"
-    - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-      requiredEntities: 
-       - name: "RewardsClaimed"
-    - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-      requiredEntities: 
-       - name: "RewardOracleUpdated"
-    - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-      requiredEntities: 
-       - name: "EmissionManagerUpdated"
-    - event: "ClaimerSet(address indexed user, address indexed claimer)"
-      requiredEntities: 
-       - name: "ClaimerSet"
-    - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-      requiredEntities: 
-       - name: "TransferStrategyInstalled" 
-- id: 43114
-  start_block: 0
-  contracts:
-  - name: AvalancheAaveOracle
-    # abi_file_path: ./abis/AaveOracle.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0xEBd36016B3eD09D4693Ed4251c67Bd858c3c7C9C
-    events:
-    - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      requiredEntities: 
-       - name: "AssetSourceUpdated"
-    - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-      requiredEntities:
-       - name: "FallbackOracleUpdated"
-    - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-      requiredEntities: 
-       - name: "BaseCurrencySet" 
-  - name: AvalanchePoolAddressesProviderRegistry
-    # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
-    events:
-    - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderRegistered"
-    - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderUnregistered"
-    - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      requiredEntities: 
-       - name: "OwnershipTransferred"
-  - name: AvalancheRewardsController
-    # abi_file_path: ./abis/RewardsController.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x929EC64c34a17401F460460D4B9390518E5B473e
-    events:
-    - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-      requiredEntities: 
-       - name: "AssetConfigUpdated"
-    - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-      requiredEntities: 
-       - name: "Accrued"
-    - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-      requiredEntities: 
-       - name: "RewardsClaimed"
-    - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-      requiredEntities: 
-       - name: "RewardOracleUpdated"
-    - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-      requiredEntities: 
-       - name: "EmissionManagerUpdated"
-    - event: "ClaimerSet(address indexed user, address indexed claimer)"
-      requiredEntities: 
-       - name: "ClaimerSet"
-    - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-      requiredEntities: 
-       - name: "TransferStrategyInstalled"
-- id: 42161
-  start_block: 0
-  contracts:
-  - name: ArbitrumAaveOracle
-    # abi_file_path: ./abis/AaveOracle.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0xb56c2F0B653B2e0b10C9b928C8580Ac5Df02C7C7
-    events:
-    - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      requiredEntities: 
-       - name: "AssetSourceUpdated"
-    - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-      requiredEntities:
-       - name: "FallbackOracleUpdated"
-    - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-      requiredEntities: 
-       - name: "BaseCurrencySet" 
-  - name: ArbitrumPoolAddressesProviderRegistry
-    # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
-    events:
-    - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderRegistered"
-    - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderUnregistered"
-    - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      requiredEntities: 
-       - name: "OwnershipTransferred"
-  - name: ArbitrumRewardsController
-    # abi_file_path: ./abis/RewardsController.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x929EC64c34a17401F460460D4B9390518E5B473e
-    events:
-    - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-      requiredEntities: 
-       - name: "AssetConfigUpdated"
-    - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-      requiredEntities: 
-       - name: "Accrued"
-    - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-      requiredEntities: 
-       - name: "RewardsClaimed"
-    - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-      requiredEntities: 
-       - name: "RewardOracleUpdated"
-    - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-      requiredEntities: 
-       - name: "EmissionManagerUpdated"
-    - event: "ClaimerSet(address indexed user, address indexed claimer)"
-      requiredEntities: 
-       - name: "ClaimerSet"
-    - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-      requiredEntities: 
-       - name: "TransferStrategyInstalled"
-- id: 10
-  start_block: 0
-  contracts:
-  - name: OptimismAaveOracle
-    # abi_file_path: ./abis/AaveOracle.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0xD81eb3728a631871a7eBBaD631b5f424909f0c77
-    events:
-    - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      requiredEntities: 
-       - name: "AssetSourceUpdated"
-    - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-      requiredEntities:
-       - name: "FallbackOracleUpdated"
-    - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-      requiredEntities: 
-       - name: "BaseCurrencySet" 
-  - name: OptimismPoolAddressesProviderRegistry
-    # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
-    events:
-    - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderRegistered"
-    - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-      requiredEntities: 
-       - name: "AddressesProviderUnregistered"
-    - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      requiredEntities: 
-       - name: "OwnershipTransferred"
-  - name: OptimismRewardsController
-    # abi_file_path: ./abis/RewardsController.json
-    handler: ./src/EventHandlers.js
-    address:
-    - 0x929EC64c34a17401F460460D4B9390518E5B473e
-    events:
-    - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-      requiredEntities: 
-       - name: "AssetConfigUpdated"
-    - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-      requiredEntities: 
-       - name: "Accrued"
-    - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-      requiredEntities: 
-       - name: "RewardsClaimed"
-    - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-      requiredEntities: 
-       - name: "RewardOracleUpdated"
-    - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-      requiredEntities: 
-       - name: "EmissionManagerUpdated"
-    - event: "ClaimerSet(address indexed user, address indexed claimer)"
-      requiredEntities: 
-       - name: "ClaimerSet"
-    - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-      requiredEntities: 
-       - name: "TransferStrategyInstalled"
+  - id: 1
+    start_block: 16291000
+    contracts:
+      - name: AaveOracle
+        handler: ./src/EventHandlers.js
+        address:
+          - 0x54586bE62E3c3580375aE3723C145253060Ca0C2
+        events:
+          - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
+            requiredEntities:
+              - name: "Assetsourceupdated"
+          # - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+          #   requiredEntities:
+          #     - name: "FallbackOracleUpdated"
+          # - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+          #   requiredEntities:
+          #     - name: "BaseCurrencySet"
+      # - name: PoolAddressesProviderRegistry
+      #   # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+      #   handler: ./src/EventHandlers.js
+      #   address:
+      #     - 0xbaA999AC55EAce41CcAE355c77809e68Bb345170
+      #   events:
+      #     - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+      #       requiredEntities:
+      #         - name: "AddressesProviderRegistered"
+      #     - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+      #       requiredEntities:
+      #         - name: "AddressesProviderUnregistered"
+      #     - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+      #       requiredEntities:
+      #         - name: "OwnershipTransferred"
+      # - name: RewardsController
+      #   # abi_file_path: ./abis/RewardsController.json
+      #   handler: ./src/EventHandlers.js
+      #   address:
+      #     - 0x8164Cc65827dcFe994AB23944CBC90e0aa80bFcb
+      #   events:
+      #     - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+      #       requiredEntities:
+      #         - name: "AssetConfigUpdated"
+      #     - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+      #       requiredEntities:
+      #         - name: "Accrued"
+      #     - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+      #       requiredEntities:
+      #         - name: "RewardsClaimed"
+      #     - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+      #       requiredEntities:
+      #         - name: "RewardOracleUpdated"
+      #     - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+      #       requiredEntities:
+      #         - name: "EmissionManagerUpdated"
+      #     - event: "ClaimerSet(address indexed user, address indexed claimer)"
+      #       requiredEntities:
+      #         - name: "ClaimerSet"
+      #     - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+      #       requiredEntities:
+      #         - name: "TransferStrategyInstalled"
+# - id: 137
+#   start_block: 0
+#   contracts:
+#   - name: PolygonAaveOracle
+#     # abi_file_path: ./abis/AaveOracle.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0xb023e699F5a33916Ea823A16485e259257cA8Bd1
+#     events:
+#     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
+#       requiredEntities:
+#        - name: "AssetSourceUpdated"
+#     - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#       requiredEntities:
+#        - name: "FallbackOracleUpdated"
+#     - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#       requiredEntities:
+#        - name: "BaseCurrencySet"
+#   - name: PolygonPoolAddressesProviderRegistry
+#     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
+#     events:
+#     - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderRegistered"
+#     - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderUnregistered"
+#     - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#       requiredEntities:
+#        - name: "OwnershipTransferred"
+#   - name: PolygonRewardsController
+#     # abi_file_path: ./abis/RewardsController.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x929EC64c34a17401F460460D4B9390518E5B473e
+#     events:
+#     - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#       requiredEntities:
+#        - name: "AssetConfigUpdated"
+#     - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#       requiredEntities:
+#        - name: "Accrued"
+#     - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#       requiredEntities:
+#        - name: "RewardsClaimed"
+#     - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#       requiredEntities:
+#        - name: "RewardOracleUpdated"
+#     - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#       requiredEntities:
+#        - name: "EmissionManagerUpdated"
+#     - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#       requiredEntities:
+#        - name: "ClaimerSet"
+#     - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#       requiredEntities:
+#        - name: "TransferStrategyInstalled"
+# - id: 43114
+#   start_block: 0
+#   contracts:
+#   - name: AvalancheAaveOracle
+#     # abi_file_path: ./abis/AaveOracle.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0xEBd36016B3eD09D4693Ed4251c67Bd858c3c7C9C
+#     events:
+#     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
+#       requiredEntities:
+#        - name: "AssetSourceUpdated"
+#     - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#       requiredEntities:
+#        - name: "FallbackOracleUpdated"
+#     - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#       requiredEntities:
+#        - name: "BaseCurrencySet"
+#   - name: AvalanchePoolAddressesProviderRegistry
+#     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
+#     events:
+#     - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderRegistered"
+#     - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderUnregistered"
+#     - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#       requiredEntities:
+#        - name: "OwnershipTransferred"
+#   - name: AvalancheRewardsController
+#     # abi_file_path: ./abis/RewardsController.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x929EC64c34a17401F460460D4B9390518E5B473e
+#     events:
+#     - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#       requiredEntities:
+#        - name: "AssetConfigUpdated"
+#     - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#       requiredEntities:
+#        - name: "Accrued"
+#     - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#       requiredEntities:
+#        - name: "RewardsClaimed"
+#     - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#       requiredEntities:
+#        - name: "RewardOracleUpdated"
+#     - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#       requiredEntities:
+#        - name: "EmissionManagerUpdated"
+#     - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#       requiredEntities:
+#        - name: "ClaimerSet"
+#     - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#       requiredEntities:
+#        - name: "TransferStrategyInstalled"
+# - id: 42161
+#   start_block: 0
+#   contracts:
+#   - name: ArbitrumAaveOracle
+#     # abi_file_path: ./abis/AaveOracle.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0xb56c2F0B653B2e0b10C9b928C8580Ac5Df02C7C7
+#     events:
+#     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
+#       requiredEntities:
+#        - name: "AssetSourceUpdated"
+#     - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#       requiredEntities:
+#        - name: "FallbackOracleUpdated"
+#     - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#       requiredEntities:
+#        - name: "BaseCurrencySet"
+#   - name: ArbitrumPoolAddressesProviderRegistry
+#     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
+#     events:
+#     - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderRegistered"
+#     - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderUnregistered"
+#     - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#       requiredEntities:
+#        - name: "OwnershipTransferred"
+#   - name: ArbitrumRewardsController
+#     # abi_file_path: ./abis/RewardsController.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x929EC64c34a17401F460460D4B9390518E5B473e
+#     events:
+#     - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#       requiredEntities:
+#        - name: "AssetConfigUpdated"
+#     - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#       requiredEntities:
+#        - name: "Accrued"
+#     - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#       requiredEntities:
+#        - name: "RewardsClaimed"
+#     - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#       requiredEntities:
+#        - name: "RewardOracleUpdated"
+#     - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#       requiredEntities:
+#        - name: "EmissionManagerUpdated"
+#     - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#       requiredEntities:
+#        - name: "ClaimerSet"
+#     - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#       requiredEntities:
+#        - name: "TransferStrategyInstalled"
+# - id: 10
+#   start_block: 0
+#   contracts:
+#   - name: OptimismAaveOracle
+#     # abi_file_path: ./abis/AaveOracle.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0xD81eb3728a631871a7eBBaD631b5f424909f0c77
+#     events:
+#     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
+#       requiredEntities:
+#        - name: "AssetSourceUpdated"
+#     - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#       requiredEntities:
+#        - name: "FallbackOracleUpdated"
+#     - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#       requiredEntities:
+#        - name: "BaseCurrencySet"
+#   - name: OptimismPoolAddressesProviderRegistry
+#     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
+#     events:
+#     - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderRegistered"
+#     - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#       requiredEntities:
+#        - name: "AddressesProviderUnregistered"
+#     - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#       requiredEntities:
+#        - name: "OwnershipTransferred"
+#   - name: OptimismRewardsController
+#     # abi_file_path: ./abis/RewardsController.json
+#     handler: ./src/EventHandlers.js
+#     address:
+#     - 0x929EC64c34a17401F460460D4B9390518E5B473e
+#     events:
+#     - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#       requiredEntities:
+#        - name: "AssetConfigUpdated"
+#     - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#       requiredEntities:
+#        - name: "Accrued"
+#     - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#       requiredEntities:
+#        - name: "RewardsClaimed"
+#     - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#       requiredEntities:
+#        - name: "RewardOracleUpdated"
+#     - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#       requiredEntities:
+#        - name: "EmissionManagerUpdated"
+#     - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#       requiredEntities:
+#        - name: "ClaimerSet"
+#     - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#       requiredEntities:
+#        - name: "TransferStrategyInstalled"
 # - id: 250
 #   start_block: 0
 #   contracts:
@@ -312,56 +310,56 @@ networks:
 #     - 0xfd6f3c1845604C8AE6c6E402ad17fb9885160754
 #     events:
 #     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-#       requiredEntities: 
+#       requiredEntities:
 #        - name: "AssetSourceUpdated"
-    # - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-    #   requiredEntities:
-    #    - name: "FallbackOracleUpdated"
-    # - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-    #   requiredEntities: 
-    #    - name: "BaseCurrencySet" 
+# - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#   requiredEntities:
+#    - name: "FallbackOracleUpdated"
+# - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#   requiredEntities:
+#    - name: "BaseCurrencySet"
 #   - name: FantomPoolAddressesProviderRegistry
 #     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
 #     events:
-    # - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderRegistered"
-    # - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderUnregistered"
-    # - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-    #   requiredEntities: 
-    #    - name: "OwnershipTransferred"
+# - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderRegistered"
+# - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderUnregistered"
+# - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#   requiredEntities:
+#    - name: "OwnershipTransferred"
 #   - name: FantomRewardsController
 #     # abi_file_path: ./abis/RewardsController.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x929EC64c34a17401F460460D4B9390518E5B473e
 #     events:
-    # - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-    #   requiredEntities: 
-    #    - name: "AssetConfigUpdated"
-    # - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-    #   requiredEntities: 
-    #    - name: "Accrued"
-    # - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-    #   requiredEntities: 
-    #    - name: "RewardsClaimed"
-    # - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-    #   requiredEntities: 
-    #    - name: "RewardOracleUpdated"
-    # - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-    #   requiredEntities: 
-    #    - name: "EmissionManagerUpdated"
-    # - event: "ClaimerSet(address indexed user, address indexed claimer)"
-    #   requiredEntities: 
-    #    - name: "ClaimerSet"
-    # - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-    #   requiredEntities: 
-    #    - name: "TransferStrategyInstalled"
+# - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#   requiredEntities:
+#    - name: "AssetConfigUpdated"
+# - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#   requiredEntities:
+#    - name: "Accrued"
+# - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#   requiredEntities:
+#    - name: "RewardsClaimed"
+# - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#   requiredEntities:
+#    - name: "RewardOracleUpdated"
+# - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#   requiredEntities:
+#    - name: "EmissionManagerUpdated"
+# - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#   requiredEntities:
+#    - name: "ClaimerSet"
+# - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#   requiredEntities:
+#    - name: "TransferStrategyInstalled"
 # - id: 1666600000
 #   start_block: 0
 #   contracts:
@@ -372,56 +370,56 @@ networks:
 #     - 0x3C90887Ede8D65ccb2777A5d577beAb2548280AD
 #     events:
 #     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-#       requiredEntities: 
+#       requiredEntities:
 #        - name: "AssetSourceUpdated"
-    # - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-    #   requiredEntities:
-    #    - name: "FallbackOracleUpdated"
-    # - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-    #   requiredEntities: 
-    #    - name: "BaseCurrencySet" 
+# - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#   requiredEntities:
+#    - name: "FallbackOracleUpdated"
+# - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#   requiredEntities:
+#    - name: "BaseCurrencySet"
 #   - name: HarmonyPoolAddressesProviderRegistry
 #     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x770ef9f4fe897e59daCc474EF11238303F9552b6
 #     events:
-    # - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderRegistered"
-    # - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderUnregistered"
-    # - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-      # requiredEntities: 
-      #  - name: "OwnershipTransferred"
+# - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderRegistered"
+# - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderUnregistered"
+# - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+# requiredEntities:
+#  - name: "OwnershipTransferred"
 #   - name: HarmonyRewardsController
 #     # abi_file_path: ./abis/RewardsController.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x929EC64c34a17401F460460D4B9390518E5B473e
 #     events:
-    # - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-    #   requiredEntities: 
-    #    - name: "AssetConfigUpdated"
-    # - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-    #   requiredEntities: 
-    #    - name: "Accrued"
-    # - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-    #   requiredEntities: 
-    #    - name: "RewardsClaimed"
-    # - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-    #   requiredEntities: 
-    #    - name: "RewardOracleUpdated"
-    # - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-    #   requiredEntities: 
-    #    - name: "EmissionManagerUpdated"
-    # - event: "ClaimerSet(address indexed user, address indexed claimer)"
-    #   requiredEntities: 
-    #    - name: "ClaimerSet"
-    # - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-    #   requiredEntities: 
-    #    - name: "TransferStrategyInstalled"     
+# - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#   requiredEntities:
+#    - name: "AssetConfigUpdated"
+# - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#   requiredEntities:
+#    - name: "Accrued"
+# - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#   requiredEntities:
+#    - name: "RewardsClaimed"
+# - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#   requiredEntities:
+#    - name: "RewardOracleUpdated"
+# - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#   requiredEntities:
+#    - name: "EmissionManagerUpdated"
+# - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#   requiredEntities:
+#    - name: "ClaimerSet"
+# - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#   requiredEntities:
+#    - name: "TransferStrategyInstalled"
 # - id: 8453
 #   start_block: 0
 #   contracts:
@@ -432,56 +430,56 @@ networks:
 #     - 0x2Cc0Fc26eD4563A5ce5e8bdcfe1A2878676Ae156
 #     events:
 #     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-      # requiredEntities: 
-      #  - name: "AssetSourceUpdated"  
-    # - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-    #   requiredEntities:
-    #    - name: "FallbackOracleUpdated"    
-    # - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-    #   requiredEntities: 
-    #    - name: "BaseCurrencySet"     
+# requiredEntities:
+#  - name: "AssetSourceUpdated"
+# - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#   requiredEntities:
+#    - name: "FallbackOracleUpdated"
+# - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#   requiredEntities:
+#    - name: "BaseCurrencySet"
 #   - name: BasePoolAddressesProviderRegistry
 #     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x2f6571d3Eb9a4e350C68C36bCD2afe39530078E2
 #     events:
-    # - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderRegistered"   
-    # - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderUnregistered"   
-    # - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-    #   requiredEntities: 
-    #    - name: "OwnershipTransferred"     
+# - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderRegistered"
+# - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderUnregistered"
+# - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#   requiredEntities:
+#    - name: "OwnershipTransferred"
 #   - name: BaseRewardsController
 #     # abi_file_path: ./abis/RewardsController.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0xf9cc4F0D883F1a1eb2c253bdb46c254Ca51E1F44
 #     events:
-    # - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-    #   requiredEntities: 
-    #    - name: "AssetConfigUpdated"     
-    # - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-    #   requiredEntities: 
-    #    - name: "Accrued"
-    # - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-    #   requiredEntities: 
-    #    - name: "RewardsClaimed"     
-    # - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-    #   requiredEntities: 
-    #    - name: "RewardOracleUpdated"
-    # - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-    #   requiredEntities: 
-    #    - name: "EmissionManagerUpdated"    
-    # - event: "ClaimerSet(address indexed user, address indexed claimer)"
-    #   requiredEntities: 
-    # #    - name: "ClaimerSet"    
-    # - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-    #   requiredEntities: 
-    #    - name: "TransferStrategyInstalled"
+# - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#   requiredEntities:
+#    - name: "AssetConfigUpdated"
+# - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#   requiredEntities:
+#    - name: "Accrued"
+# - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#   requiredEntities:
+#    - name: "RewardsClaimed"
+# - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#   requiredEntities:
+#    - name: "RewardOracleUpdated"
+# - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#   requiredEntities:
+#    - name: "EmissionManagerUpdated"
+# - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#   requiredEntities:
+# #    - name: "ClaimerSet"
+# - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#   requiredEntities:
+#    - name: "TransferStrategyInstalled"
 # - id: 1088
 #   start_block: 0
 #   contracts:
@@ -492,53 +490,53 @@ networks:
 #     - 0x38D36e85E47eA6ff0d18B0adF12E5fC8984A6f8e
 #     events:
 #     - event: "AssetSourceUpdated(address indexed asset, address indexed source)"
-#       requiredEntities: 
+#       requiredEntities:
 #        - name: "AssetSourceUpdated"
-    # - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
-    #   requiredEntities:
-    #    - name: "FallbackOracleUpdated"     
-    # - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
-    #   requiredEntities: 
-    #    - name: "BaseCurrencySet"    
+# - event: "FallbackOracleUpdated(address indexed fallbackOracle)"
+#   requiredEntities:
+#    - name: "FallbackOracleUpdated"
+# - event: "BaseCurrencySet(address indexed baseCurrency, uint256 baseCurrencyUnit)"
+#   requiredEntities:
+#    - name: "BaseCurrencySet"
 #   - name: MetisPoolAddressesProviderRegistry
 #     # abi_file_path: ./abis/PoolAddressesProviderRegistry.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x9E7B73ffD9D2026F3ff4212c29E209E09C8A91F5
 #     events:
-    # - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderRegistered"   
-    # - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
-    #   requiredEntities: 
-    #    - name: "AddressesProviderUnregistered"     
-    # - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
-    #   requiredEntities: 
-    #    - name: "OwnershipTransferred"    
+# - event: "AddressesProviderRegistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderRegistered"
+# - event: "AddressesProviderUnregistered(address indexed addressesProvider, uint256 indexed id)"
+#   requiredEntities:
+#    - name: "AddressesProviderUnregistered"
+# - event: "OwnershipTransferred(address indexed previousOwner, address indexed newOwner)"
+#   requiredEntities:
+#    - name: "OwnershipTransferred"
 #   - name: MetisRewardsController
 #     # abi_file_path: ./abis/RewardsController.json
 #     handler: ./src/EventHandlers.js
 #     address:
 #     - 0x30C1b8F0490fa0908863d6Cbd2E36400b4310A6B
 #     events:
-    # - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
-    #   requiredEntities: 
-    #    - name: "AssetConfigUpdated"    
-    # - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
-    #   requiredEntities: 
-    #    - name: "Accrued"  
-    # - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
-    #   requiredEntities: 
-    #    - name: "RewardsClaimed"  
-    # - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
-    #   requiredEntities: 
-    #    - name: "RewardOracleUpdated"    
-    # - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
-    #   requiredEntities: 
-    #    - name: "EmissionManagerUpdated"   
-    # - event: "ClaimerSet(address indexed user, address indexed claimer)"
-    #   requiredEntities: 
-    #    - name: "ClaimerSet"    
-    # - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)" 
-    #   requiredEntities: 
-    #    - name: "TransferStrategyInstalled"
+# - event: "AssetConfigUpdated(address indexed asset, address indexed reward, uint256 oldEmission, uint256 newEmission, uint256 oldDistributionEnd, uint256 newDistributionEnd, uint256 assetIndex)"
+#   requiredEntities:
+#    - name: "AssetConfigUpdated"
+# - event: "Accrued(address indexed asset, address indexed reward, address indexed user, uint256 assetIndex, uint256 userIndex, uint256 rewardsAccrued)"
+#   requiredEntities:
+#    - name: "Accrued"
+# - event: "RewardsClaimed(address indexed user, address indexed reward, address indexed to, address claimer, uint256 amount)"
+#   requiredEntities:
+#    - name: "RewardsClaimed"
+# - event: "RewardOracleUpdated(address indexed reward, address indexed rewardOracle)"
+#   requiredEntities:
+#    - name: "RewardOracleUpdated"
+# - event: "EmissionManagerUpdated(address indexed oldEmissionManager, address indexed newEmissionManager)"
+#   requiredEntities:
+#    - name: "EmissionManagerUpdated"
+# - event: "ClaimerSet(address indexed user, address indexed claimer)"
+#   requiredEntities:
+#    - name: "ClaimerSet"
+# - event: "TransferStrategyInstalled(address indexed reward, address indexed transferStrategy)"
+#   requiredEntities:
+#    - name: "TransferStrategyInstalled"
