@@ -1,11 +1,24 @@
 /*
-*Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features*
-*/
+ *Please refer to https://docs.envio.dev for a thorough guide on all Envio indexer features*
+ */
 
-let { AaveOracleContract, AvalancheAaveOracleContract, PolygonAaveOracleContract, ArbitrumAaveOracleContract, OptimismAaveOracleContract,
-      PoolAddressesProviderRegistryContract, PolygonPoolAddressesProviderRegistryContract, ArbitrumPoolAddressesProviderRegistryContract, OptimismPoolAddressesProviderRegistryContract, AvalanchePoolAddressesProviderRegistryContract,
-      RewardsControllerContract, PolygonRewardsControllerContract, ArbitrumRewardsControllerContract, OptimismRewardsControllerContract, AvalancheRewardsControllerContract
-     } = require("../generated/src/Handlers.bs.js");
+let {
+  AaveOracleContract,
+  // AvalancheAaveOracleContract,
+  // PolygonAaveOracleContract,
+  // ArbitrumAaveOracleContract,
+  // OptimismAaveOracleContract,
+  // PoolAddressesProviderRegistryContract,
+  // PolygonPoolAddressesProviderRegistryContract,
+  // ArbitrumPoolAddressesProviderRegistryContract,
+  // OptimismPoolAddressesProviderRegistryContract,
+  // AvalanchePoolAddressesProviderRegistryContract,
+  // RewardsControllerContract,
+  // PolygonRewardsControllerContract,
+  // ArbitrumRewardsControllerContract,
+  // OptimismRewardsControllerContract,
+  // AvalancheRewardsControllerContract,
+} = require("../generated/src/Handlers.bs.js");
 
 // MyAwesomeContractContract.AwesomeEvent.loader(({ event, context }) => {
 //   let _ = context.awesomeEvent.load(event.params.identifier);
@@ -15,12 +28,14 @@ let { AaveOracleContract, AvalancheAaveOracleContract, PolygonAaveOracleContract
 //   let awesomeEventObject = context.awesomeEvent.get(event.params.identifier);
 //   context.awesomeEvent.set(awesomeEventObject);
 // });
-AaveOracleContract.AssetSourceUpdated.loader = (event, context) => {
-  context.AssetSourceUpdated.load(AssetSourceUpdated);
-};
+AaveOracleContract.AssetSourceUpdated.loader((event, context) => {
+  context.assetsourceupdated.load(event.transactionHash);
+});
 
-AaveOracleContract.AssetSourceUpdated.handler = (event, context) => {
-  let entity = context.AssetSourceUpdated.get(AssetSourceUpdated);
+AaveOracleContract.AssetSourceUpdated.handler((event, context) => {
+  let entity = context.assetsourceupdated.get(event.transactionHash);
+
+  console.log(entity);
 
   if (!entity) {
     entity = {
@@ -29,52 +44,51 @@ AaveOracleContract.AssetSourceUpdated.handler = (event, context) => {
       source: event.params.source,
       evtBlockTime: event.blockTimestamp,
       evtBlockNum: event.blockNumber,
-      contractAddress: event.srcAddress
+      contractAddress: event.srcAddress,
     };
+    context.assetsourceupdated.set(entity);
   }
+});
 
-  context.AssetSourceUpdated.set(entity);
-};
+// // FallbackOracleUpdated Event Handler
+// AaveOracleContract.FallbackOracleUpdated.loader = (event, context) => {
+//   context.FallbackOracleUpdated.load(FallbackOracleUpdated);
+// };
 
-// FallbackOracleUpdated Event Handler
-AaveOracleContract.FallbackOracleUpdated.loader = (event, context) => {
-  context.FallbackOracleUpdated.load(FallbackOracleUpdated);
-};
+// AaveOracleContract.FallbackOracleUpdated.handler = (event, context) => {
+//   let entity = context.FallbackOracleUpdated.get(FallbackOracleUpdated);
 
-AaveOracleContract.FallbackOracleUpdated.handler = (event, context) => {
-  let entity = context.FallbackOracleUpdated.get(FallbackOracleUpdated);
+//   if (!entity) {
+//     entity = {
+//       id: event.transactionHash,
+//       fallbackOracle: event.params.fallbackOracle,
+//       evtBlockTime: event.blockTimestamp,
+//       evtBlockNum: event.blockNumber,
+//       contractAddress: event.srcAddress
+//     };
+//   }
 
-  if (!entity) {
-    entity = {
-      id: event.transactionHash,
-      fallbackOracle: event.params.fallbackOracle,
-      evtBlockTime: event.blockTimestamp,
-      evtBlockNum: event.blockNumber,
-      contractAddress: event.srcAddress
-    };
-  }
+//   context.FallbackOracleUpdated.set(entity);
+// };
 
-  context.FallbackOracleUpdated.set(entity);
-};
+// // BaseCurrencySet Event Handler
+// AaveOracleContract.BaseCurrencySet.loader = (event, context) => {
+//   context.BaseCurrencySet.load(BaseCurrencySet);
+// };
 
-// BaseCurrencySet Event Handler
-AaveOracleContract.BaseCurrencySet.loader = (event, context) => {
-  context.BaseCurrencySet.load(BaseCurrencySet);
-};
+// AaveOracleContract.BaseCurrencySet.handler = (event, context) => {
+//   let entity = context.BaseCurrencySet.get(BaseCurrencySet);
 
-AaveOracleContract.BaseCurrencySet.handler = (event, context) => {
-  let entity = context.BaseCurrencySet.get(BaseCurrencySet);
+//   if (!entity) {
+//     entity = {
+//       id: event.transactionHash,
+//       baseCurrency: event.params.baseCurrency,
+//       baseCurrencyUnit: event.params.baseCurrencyUnit,
+//       evtBlockTime: event.blockTimestamp,
+//       evtBlockNum: event.blockNumber,
+//       contractAddress: event.srcAddress,
+//     };
+//   }
 
-  if (!entity) {
-    entity = {
-      id: event.transactionHash,
-      baseCurrency: event.params.baseCurrency,
-      baseCurrencyUnit: event.params.baseCurrencyUnit,
-      evtBlockTime: event.blockTimestamp,
-      evtBlockNum: event.blockNumber,
-      contractAddress: event.srcAddress
-    };
-  }
-
-  context.BaseCurrencySet.set(entity);
-};
+//   context.BaseCurrencySet.set(entity);
+// };
